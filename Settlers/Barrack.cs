@@ -8,7 +8,7 @@ namespace Settlers
     {
         private int swordsmanCountdown = 4;
         private int steelCountdown = 3;
-        private int totalSteel;
+        private double totalSteel;
 
         private List<Swordsman> swordsmen = new List<Swordsman>();
         private List<Resource> steelTreasury = new List<Resource>();
@@ -41,12 +41,13 @@ namespace Settlers
         public override void produceResource()
         {
             steelTreasury.Add(new Resource(ResourceType.STEEL, 10));
+            Console.WriteLine("Your settlement's resources grow.");
             countResources();
         }
 
         public void countResources()
         {
-            int newAmount = 0;
+            double newAmount = 0;
             foreach (Resource resource in steelTreasury)
             {
                 newAmount += resource.Quantity;
@@ -69,11 +70,15 @@ namespace Settlers
             return TurnCounter % 3 == 0;
         }
 
-        public int TotalSteel
+        public double TotalSteel
         {
             get
             {
                 return totalSteel;
+            }
+            set
+            {
+                totalSteel = value;
             }
         }
 

@@ -8,7 +8,7 @@ namespace Settlers
     {
         private int archerCountdown = 3;
         private int goldCountdown = 2;
-        private int totalGold;
+        private double totalGold;
 
         private List<Archer> archers = new List<Archer>();
         private List<Resource> goldTreasury = new List<Resource>();
@@ -39,12 +39,13 @@ namespace Settlers
         public override void produceResource()
         {
             goldTreasury.Add(new Resource(ResourceType.GOLD, 5));
+            Console.WriteLine("Your settlement's resources grow.");
             countResources();
         }
 
         public void countResources()
         {
-            int newAmount = 0;
+            double newAmount = 0;
             foreach (Resource gold in goldTreasury)
             {
                 newAmount += gold.Quantity;
@@ -67,11 +68,15 @@ namespace Settlers
             return TurnCounter % 2 == 0;
         }
 
-        public int TotalGold
+        public double TotalGold
         {
             get
             {
                 return totalGold;
+            }
+            set
+            {
+                totalGold = value;
             }
         }
 
